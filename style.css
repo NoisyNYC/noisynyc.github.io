@@ -1,0 +1,84 @@
+section {
+  padding-top: 40px;
+}
+
+
+
+.wrapper {
+  width: 1400px;
+  height: 1000px;
+  margin: 0 auto;
+  position: relative;
+  padding: 28px 0 0 0;
+}
+
+
+.instructions {
+    height: 33px
+    padding-top:100px
+
+}
+
+p {
+  font-family: Georgia;
+  font-size: 17px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  line-height:23px;
+
+}
+
+h1 {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-size:53px;
+  text-align: center;
+
+
+}
+
+h3 {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-size:24px;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 50px;
+
+
+}
+
+nav {
+  position: absolute;
+  left: 0;
+  right;
+  0;
+  top: 0px;
+  background: #303030;
+  display: block;
+  width: 100%;
+  padding: 4px 20px;
+  height: 40px;
+  z-index: 100;
+}
+
+nav a {
+  font-family: "Georgia";
+  font-size: 14px;
+  color: #ffffff;
+  padding: 20px 24px;
+  display: block;
+  float: left;
+  text-decoration: none;
+  margin-right: 4px;
+}
+
+nav a:hover,
+nav a.active {
+  background: white;
+  color: black
+}
+
+.fixed {
+  position: fixed;
+  top: 0
+}
