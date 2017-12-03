@@ -1,0 +1,40 @@
+<html class="html">
+<head>
+	<meta charset="UTF-8">
+	<title>Noisey NYV</title>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+
+    <script>
+
+		var svg = d3.select("svg");
+
+		var path = d3.geoPath();
+
+		d3.json("https://unpkg.com/us-atlas@1/us/10m.json", function(error, us) {
+		  if (error) throw error;
+
+		  svg.append("path")
+		      .attr("stroke", "#aaa")
+		      .attr("stroke-width", 0.5)
+		      .attr("d", path(topojson.mesh(us, us.objects.counties, function(a, b) { return a !== b && (a.id / 1000 | 0) === (b.id / 1000 | 0); })));
+
+		  svg.append("path")
+		      .attr("stroke-width", 0.5)
+		      .attr("d", path(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; })));
+
+		  svg.append("path")
+		      .attr("d", path(topojson.feature(us, us.objects.nation)));
+		});
+
+	</script>
+
+</head>
+<body>
+	
+</body>
+</html>
