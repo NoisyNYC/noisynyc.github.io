@@ -8,11 +8,9 @@
       src="https://code.jquery.com/jquery-1.8.3.min.js"
       integrity="sha256-YcbK69I5IXQftf/mYD8WY0/KmEDCv1asggHpJk1trM8="
       crossorigin="anonymous"></script>
-    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
-    <script src="http://d3js.org/queue.v1.min.js"></script>
-    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-    <script src="https://unpkg.com/topojson-client@3"></script>
+<!--     <script src="https://unpkg.com/topojson-client@3"></script> -->
     <script type="text/javascript" src="myjs.js"></script> 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -70,7 +68,12 @@
         <p style="font-size: 12px; margin: auto auto auto auto">sdkljaskldjkasjdkaskdj</p>
         <p style="font-size: 12px; margin: auto auto auto auto">daskjdkjsakdjaslkldlja</p>
 
+        <svg></svg>
+        <div id='neighborhoodPopover'> </div>
+
       </section>
+
+      
 
     </div>
 
@@ -78,20 +81,54 @@
 
 
     <script>
-    var svg = d3.select("svg");
-    var path = d3.geoPath();
-    d3.json("https://unpkg.com/us-atlas@1/us/10m.json", function(error, us) {
+    var width=960,
+        height=720;
+
+    var svg = d3.select("svg")
+              .attr("width", width)
+              .attr("height", height);
+    
+    d3.json("nyc.json", function(error, nyc) {
       if (error) throw error;
-      svg.append("path")
-          .attr("stroke", "#aaa")
-          .attr("stroke-width", 0.5)
-          .attr("d", path(topojson.mesh(us, us.objects.counties, function(a, b) { return a !== b && (a.id / 1000 | 0) === (b.id / 1000 | 0); })));
-      svg.append("path")
-          .attr("stroke-width", 0.5)
-          .attr("d", path(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; })));
-      svg.append("path")
-          .attr("d", path(topojson.feature(us, us.objects.nation)));
-    });
+      
+      var path = d3.geoPath()
+                    .projection(d3.geoConicConformal()
+                    .parallels([33, 45])
+                    .rotate([96, -39])
+                    .fitSize([width, height], nyc));
+
+        svg.selectAll("path")
+            .data(nyc.features)
+            .enter().append("path")
+            .attr("d", path)
+            .on("mouseenter", function(d) {
+              d3.select(this)
+              .style("stroke-width", 1.5)
+              .style("stroke-dasharray", 0)
+
+              d3.select("#neighborhoodPopover")
+              .transition()
+              .style("opacity", 1)
+              .style("left", (d3.event.pageX) + "px")
+              .style("top", (d3.event.pageY) + "px")
+              .text(d.properties.neighborhood)
+
+            })
+          .on("mouseleave", function(d) { 
+            d3.select(this)
+            .style("stroke-width", .25)
+            .style("stroke-dasharray", 1)
+
+            d3.select("#cneighborhoodPopoverountyText")
+            .transition()
+            .style("opacity", 0);
+          });
+
+          console.log(nyc);
+      });
+
+   
+
     </script>
 
 
