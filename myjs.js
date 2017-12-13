@@ -1,15 +1,11 @@
-window.onload=function(){ 
+$(window).onload=function(){
     $('nav a').on('click', function() {
-
-var scrollAnchor = $(this).attr('data-scroll'),
-    scrollPoint = $('section[data-anchor="' + scrollAnchor + '"]').offset().top - 28;
-
-$('body,html').animate({
-    scrollTop: scrollPoint
-}, 500);
-
-return false;
-
+      var scrollAnchor = $(this).attr('data-scroll'),
+      scrollPoint = $('section[data-anchor="' + scrollAnchor + '"]').offset().top - 28;
+      $('body,html').animate({
+        scrollTop: scrollPoint
+      }, 500);
+    return false;
 })
 
 
@@ -31,4 +27,4 @@ $(window).scroll(function() {
         $('nav a:first').addClass('active');
     }
 
-}).scroll();} 
+}).scroll();}

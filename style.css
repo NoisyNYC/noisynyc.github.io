@@ -2,6 +2,13 @@ section {
   padding-top: 40px;
 }
 
+h1{
+  font-family: 'Yeseva One', cursive;
+  font-size:53px;
+  text-align: center;
+  margin-top:0.5em;
+  margin-bottom:0.5em;
+}
 
 
 .wrapper {
@@ -20,32 +27,18 @@ section {
 }
 
 p {
-  font-family: Georgia;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family:Georgia,Times,Times New Roman,serif; 
+  font-weight: 300;
   font-size: 17px;
   width: 50%;
   margin-left: auto;
   margin-right: auto;
-  line-height:23px;
+  line-height:1.8em;
 
 }
 
-h1 {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
-  font-size:53px;
-  text-align: center;
 
-
-}
-
-h3 {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
-  font-size:24px;
-  text-align: center;
-  padding-top: 100px;
-  padding-bottom: 50px;
-
-
-}
 
 nav {
   position: absolute;
@@ -62,7 +55,8 @@ nav {
 }
 
 nav a {
-  font-family: "Georgia";
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
   font-size: 14px;
   color: #ffffff;
   padding: 20px 24px;
@@ -85,22 +79,39 @@ nav a.active {
 
 
 path {
-
   stroke: #fff;
   stroke-width: .5;
   stroke-dasharray: 1;
   fill: #afafaf;
-  
+
 }
 
-#neighborhoodPopover { 
-  position: absolute;     
-  text-align: center;         
-  padding: 2px;       
-  font: 12px sans-serif;    
-  background: #fff; 
-  border: 0px;    
-  border-radius: 8px;     
+#neighborhoodPopover {
+  position: absolute;
+  text-align: center;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: #fff;
+  border: 0px;
+  border-radius: 8px;
   pointer-events: none;
-  opacity: 0;     
+  opacity: 0;
+}
+
+#tableau {
+  margin-left: 5vw;
+  margin-right: 5vw;
+  height: auto;
+
+}
+.tableauPlaceholder{
+  height: auto;
+}
+
+h2{
+  font-family: 'Yeseva One', cursive;
+  font-weight: 300;
+  font-size:28px;
+  text-align: center;
+  line-height: 1.5em;
 }

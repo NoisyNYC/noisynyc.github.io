@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+  <script>
+  var width=960,
+      height=720;
+
+  var svg = d3.select("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+  d3.json("nyc.json", function(error, nyc) {
+    if (error) throw error;
+
+    var path = d3.geoPath()
+                  .projection(d3.geoConicConformal()
+                  .parallels([33, 45])
+                  .rotate([96, -39])
+                  .fitSize([width, height], nyc));
+
+      svg.selectAll("path")
+          .data(nyc.features)
+          .enter().append("path")
+          .attr("d", path)
+          .on("mouseenter", function(d) {
+            d3.select(this)
+            .style("stroke-width", 1.5)
+            .style("stroke-dasharray", 0)
+
+            d3.select("#neighborhoodPopover")
+            .transition()
+            .style("opacity", 1)
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY) + "px")
+            .text(d.properties.neighborhood)
+
+          })
+        .on("mouseleave", function(d) {
+          d3.select(this)
+          .style("stroke-width", .25)
+          .style("stroke-dasharray", 1)
+
+          d3.select("#cneighborhoodPopoverountyText")
+          .transition()
+          .style("opacity", 0);
+        });
+
+        console.log(nyc);
+    });
+
+
+
+  </script>
+
+</html>
